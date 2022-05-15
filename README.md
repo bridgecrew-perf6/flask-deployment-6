@@ -7,7 +7,7 @@
 1. Install Nginx
 2. Install Flask
 
-Make sure you open some ports for your app. This tutorial use port 80 and 8080 
+Make sure you open some ports for your app. This tutorial uses port 80 and 8080. 
 
 ### Create your apps
 
