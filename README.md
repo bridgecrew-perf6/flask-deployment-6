@@ -135,3 +135,10 @@ or
 ```
 curl 54.238.205.176:8080
 ```
+
+### Misc
+
+If you encountered error 505, try this but not sure if this a good security practice.
+```
+chmod o+rx /example_root_folder
+```
