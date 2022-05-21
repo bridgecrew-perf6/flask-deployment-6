@@ -172,7 +172,7 @@ RUN apt-get install python3-pip -y
 RUN apt-get install gunicorn3 -y
 
 COPY requirements.txt requirements.txt
-COPY app0 /app0/
+COPY app0 /app/
 
 RUN pip3 install -r requirements.txt
 WORKDIR /app/
@@ -190,7 +190,7 @@ RUN apt-get install python3-pip -y
 RUN apt-get install gunicorn3 -y
 
 COPY requirements.txt requirements.txt
-COPY app1 /app1/
+COPY app1 /app/
 
 RUN pip3 install -r requirements.txt
 WORKDIR /app/
