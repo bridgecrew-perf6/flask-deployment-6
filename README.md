@@ -231,8 +231,11 @@ delete all images
 docker rmi -f $(docker images -aq)
 ```
 
+running all images
+```
+sudo docker-compose up 
+```
 
-
-
+        
 
 
