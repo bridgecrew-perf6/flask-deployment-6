@@ -34,7 +34,7 @@ After=network.target
 [Service]
 User=ubuntu
 Group=www-data
-WorkingDirectory=/home/ubuntu/flask-deployment/app0
+WorkingDirectory=/home/ubuntu/flask-deployment/app0/app
 ExecStart=/usr/bin/gunicorn3 --workers 3 --bind unix:app0.sock -m 007 app0:app
 Restart=always
 
@@ -58,7 +58,7 @@ After=network.target
 [Service]
 User=ubuntu
 Group=www-data
-WorkingDirectory=/home/ubuntu/flask-deployment/app1
+WorkingDirectory=/home/ubuntu/flask-deployment/app1/app
 ExecStart=/usr/bin/gunicorn3 --workers 3 --bind unix:app1.sock -m 007 app1:app
 Restart=always
 
@@ -87,7 +87,7 @@ server{
         server_name 54.238.205.176;
         location / {
                 #proxy_pass http://127.0.0.1:8000;
-                proxy_pass /home/ubuntu/flask-deployment/app0/app0.sock;
+                proxy_pass /home/ubuntu/flask-deployment/app0/app/app0.sock;
         }
 }
 
@@ -98,7 +98,7 @@ server{
         server_name 54.238.205.176;
         location / {
                 #proxy_pass http://127.0.0.1:8000;
-                proxy_pass /home/ubuntu/flask-deployment/app1/app1.sock;
+                proxy_pass /home/ubuntu/flask-deployment/app1/app/app1.sock;
         }
 }
 ```
@@ -219,4 +219,23 @@ build docker image
 ```
 sudo docker-compose build
 ```
+
+### Useful commands
+
+
+list all docker images
+
+```
+sudo docker images
+```
+
+delete all images
+```
+docker rmi -f $(docker images -aq)
+```
+
+
+
+
+
 
