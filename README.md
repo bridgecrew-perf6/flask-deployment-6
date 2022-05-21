@@ -142,3 +142,11 @@ If you encountered error 505, try this but not sure if this a good security prac
 ```
 chmod o+rx /example_root_folder
 ```
+
+Useful commands
+
+Check gunicorn services
+
+```
+sudo systemctl status gunicorn
+```
