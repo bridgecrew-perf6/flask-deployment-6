@@ -150,3 +150,73 @@ Check gunicorn services
 ```
 sudo systemctl status gunicorn
 ```
+
+## Docker way
+
+### Install docker
+
+```
+sudo apt install docker-compose
+```
+
+### Create docker file
+
+Create Dockerfile in each app
+
+app0/Dockerile
+
+```
+FROM ubuntu:18.04
+MAINTAINER chandra.sutrisno@gmail.com
+
+RUN apt-get update -y
+RUN apt-get install python3-pip -y
+RUN apt-get install gunicorn3 -y
+
+COPY requirements.txt requirements.txt
+COPY app0 /app/
+
+RUN pip3 install -r requirements.txt
+WORKDIR /app/
+
+CMD ["gunicorn3", "-b", "0.0.0.0:8000", "app0:app", "--workers=3"]
+```
+
+app1/Dockerile
+
+```
+FROM ubuntu:18.04
+MAINTAINER chandra.sutrisno@gmail.com
+
+RUN apt-get update -y
+RUN apt-get install python3-pip -y
+RUN apt-get install gunicorn3 -y
+
+COPY requirements.txt requirements.txt
+COPY app0 /app/
+
+RUN pip3 install -r requirements.txt
+WORKDIR /app/
+
+CMD ["gunicorn3", "-b", "0.0.0.0:8000", "app0:app", "--workers=3"]
+```
+
+create docker-compose.yml file
+
+```
+version: '3'
+
+services:
+  app0:
+    build: ./app0
+    container_name: app0
+    ports:
+      - "8000:8000"
+    network_mode: host
+```
+
+build docker image
+```
+sudo docker-compose build
+```
+
