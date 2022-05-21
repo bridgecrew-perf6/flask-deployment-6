@@ -146,7 +146,6 @@ chmod o+rx /example_root_folder
 Useful commands
 
 Check gunicorn services
-
 ```
 sudo systemctl status gunicorn
 ```
@@ -164,7 +163,6 @@ sudo apt install docker-compose
 Create Dockerfile in each app
 
 app0/Dockerile
-
 ```
 FROM ubuntu:18.04
 MAINTAINER chandra.sutrisno@gmail.com
@@ -174,7 +172,7 @@ RUN apt-get install python3-pip -y
 RUN apt-get install gunicorn3 -y
 
 COPY requirements.txt requirements.txt
-COPY app0 /app/
+COPY app0 /app0/
 
 RUN pip3 install -r requirements.txt
 WORKDIR /app/
@@ -183,7 +181,6 @@ CMD ["gunicorn3", "-b", "0.0.0.0:8000", "app0:app", "--workers=3"]
 ```
 
 app1/Dockerile
-
 ```
 FROM ubuntu:18.04
 MAINTAINER chandra.sutrisno@gmail.com
@@ -193,12 +190,12 @@ RUN apt-get install python3-pip -y
 RUN apt-get install gunicorn3 -y
 
 COPY requirements.txt requirements.txt
-COPY app0 /app/
+COPY app1 /app1/
 
 RUN pip3 install -r requirements.txt
 WORKDIR /app/
 
-CMD ["gunicorn3", "-b", "0.0.0.0:8000", "app0:app", "--workers=3"]
+CMD ["gunicorn3", "-b", "0.0.0.0:8888", "app1:app", "--workers=3"]
 ```
 
 create docker-compose.yml file
