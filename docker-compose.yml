@@ -4,7 +4,17 @@ services:
   app0:
     build: ./app0
     container_name: app0
-    ports:
-      - "8000:8000"
     network_mode: host
 
+  app1:
+    build: ./app1
+    container_name: app1
+    network_mode: host
+
+  nginx:
+    build: ./nginx
+    container_name: nginx
+    environment:      
+      - SERVER_NAME=0.0.0.0 #put your public IP here
+    restart: always
+    network_mode: host

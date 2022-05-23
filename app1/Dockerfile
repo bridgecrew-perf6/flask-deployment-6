@@ -13,4 +13,4 @@ COPY app /app
 
 WORKDIR /app/
 
-CMD ["gunicorn3", "-b", "0.0.0.0:8888", "app1:app", "--workers=3"]
+CMD ["gunicorn3", "-b", "0.0.0.0:8080", "app1:app", "--workers=3"]
