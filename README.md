@@ -190,12 +190,14 @@ RUN apt-get install python3-pip -y
 RUN apt-get install gunicorn3 -y
 
 COPY requirements.txt requirements.txt
-COPY app1 /app/
 
 RUN pip3 install -r requirements.txt
+
+COPY app /app
+
 WORKDIR /app/
 
-CMD ["gunicorn3", "-b", "0.0.0.0:8888", "app1:app", "--workers=3"]
+CMD ["gunicorn3", "-b", "0.0.0.0:8080", "app1:app", "--workers=3"]
 ```
 
 create docker-compose.yml file
@@ -207,14 +209,25 @@ services:
   app0:
     build: ./app0
     container_name: app0
-    ports:
-      - "8000:8000"
+    network_mode: host
+
+  app1:
+    build: ./app1
+    container_name: app1
+    network_mode: host
+
+  nginx:
+    build: ./nginx
+    container_name: nginx
+    environment:      
+      - SERVER_NAME=0.0.0.0 #put your public IP here
+    restart: always
     network_mode: host
 ```
 
-build docker image
+build docker image and run in on background
 ```
-sudo docker-compose build
+sudo docker-compose up --build -d
 ```
 
 ### Useful commands
