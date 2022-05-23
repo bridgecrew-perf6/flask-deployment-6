@@ -231,11 +231,47 @@ delete all images
 docker rmi -f $(docker images -aq)
 ```
 
-running all images
+run all images
 ```
 sudo docker-compose up 
 ```
 
-        
+build and run all images in the background
+```
+sudo docker-compose up --build -d
+```
 
+show all running containers
+```
+sudo docker ps
+```
 
+kill all containers
+```
+sudo service docker stop
+```
+
+start all containers
+```
+sudo service docker start
+```
+
+builds the images, does not start the containers
+```
+sudo docker-compose build
+```
+
+builds the images if the images do not exist and starts the containers
+```
+sudo docker-compose up
+```
+
+forced to build the images even when not needed
+```
+sudo docker-compose up --build
+```
+
+skips the image build process
+```
+sudo docker-compose up --no-build
+```
