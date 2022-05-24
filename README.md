@@ -266,6 +266,11 @@ show all running containers
 sudo docker ps
 ```
 
+list all docker images
+```
+docker images
+```
+
 kill all containers
 ```
 sudo service docker stop
