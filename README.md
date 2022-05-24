@@ -7,6 +7,13 @@
 1. Install Nginx
 2. Install Flask
 
+```
+sudo apt-get update
+sudo apt-get install python3-pip
+sudo pip install Flask
+sudo apt install nginx
+```
+
 Make sure you open some ports for your app. This tutorial uses port 80 and 8080. 
 
 ### Create your apps
